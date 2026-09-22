@@ -1,4 +1,4 @@
-package com.palmergames.bukkit.towny.object.governance;
+package com.palmergames.bukkit.towny.object.governanceobjects;
 
 /// Contains information about the policy, its name, description, ect. Mostly arbitrary.
 public class PolicyData {

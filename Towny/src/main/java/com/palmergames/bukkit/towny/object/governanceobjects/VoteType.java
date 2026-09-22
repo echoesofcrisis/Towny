@@ -1,4 +1,4 @@
-package com.palmergames.bukkit.towny.object.governance;
+package com.palmergames.bukkit.towny.object.governanceobjects;
 
 /// Indicates the type of vote something is.
 public enum VoteType

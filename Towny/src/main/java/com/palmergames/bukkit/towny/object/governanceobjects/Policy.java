@@ -1,4 +1,4 @@
-package com.palmergames.bukkit.towny.object.governance;
+package com.palmergames.bukkit.towny.object.governanceobjects;
 
 /// Data container class for policies, containing the policy data and policy value as an integer.
 public class Policy {

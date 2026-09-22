@@ -12,6 +12,8 @@ import com.palmergames.bukkit.towny.object.economy.AccountAuditor;
 import com.palmergames.bukkit.towny.object.economy.BankEconomyHandler;
 import com.palmergames.bukkit.towny.object.economy.BankAccount;
 import com.palmergames.bukkit.towny.object.economy.GovernmentAccountAuditor;
+import com.palmergames.bukkit.towny.object.governanceobjects.Vote;
+import com.palmergames.bukkit.towny.object.governanceobjects.Votable;
 import com.palmergames.bukkit.util.BookFactory;
 import com.palmergames.bukkit.util.BukkitTools;
 import com.palmergames.util.StringMgmt;
@@ -34,7 +36,7 @@ import java.util.UUID;
  * 
  * @author Suneet Tipirneni (Siris)
  */
-public abstract class Government extends TownyObject implements BankEconomyHandler, ResidentList, Inviteable, Identifiable, SpawnLocation, SpawnPosition, ForwardingAudience {
+public abstract class Government extends TownyObject implements BankEconomyHandler, ResidentList, Inviteable, Identifiable, SpawnLocation, SpawnPosition, ForwardingAudience, Votable {
 	
 	protected final UUID uuid;
 	protected BankAccount account;
@@ -43,6 +45,7 @@ public abstract class Government extends TownyObject implements BankEconomyHandl
 	protected String board = null;
 	private final transient List<Invite> receivedInvites = new ArrayList<>();
 	private final transient List<Invite> sentInvites = new ArrayList<>();
+	private final transient List<Vote> activeVotes = new ArrayList<>();
 	private boolean isPublic = false;
 	private boolean isOpen = false;
 	protected boolean isNeutral = false;
@@ -107,6 +110,21 @@ public abstract class Government extends TownyObject implements BankEconomyHandl
 		sentInvites.remove(invite);
 	}
 
+	@Override
+	public final List<Vote> getActiveVotes() { return Collections.unmodifiableList(activeVotes); }
+	
+	@Override
+	public final void AddVote(Vote vote)
+	{
+		activeVotes.add(vote);
+	}
+
+	@Override
+	public final void RemoveVote(Vote vote)
+	{
+		activeVotes.remove(vote);
+	}
+	
 	/**
 	 * Sets the board of the government.
 	 * 
